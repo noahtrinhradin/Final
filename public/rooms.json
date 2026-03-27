@@ -1,0 +1,49 @@
+[
+  { "id": 101, "hotelId": 1, "name": "Park Deluxe King", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 420, "rating": 4.8, "available": true, "image": "..." },
+  { "id": 102, "hotelId": 1, "name": "City View Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 650, "rating": 4.9, "available": false, "image": "..." },
+  { "id": 103, "hotelId": 1, "name": "Compact Single Room", "type": "Single", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 210, "rating": 4.2, "available": true, "image": "..." },
+
+  { "id": 201, "hotelId": 2, "name": "Garden Terrace Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 700, "rating": 4.9, "available": false, "image": "..." },
+  { "id": 202, "hotelId": 2, "name": "River View Deluxe", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 480, "rating": 4.6, "available": true, "image": "..." },
+  { "id": 203, "hotelId": 2, "name": "Economy Single Kyoto", "type": "Economy", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 190, "rating": 4.1, "available": true, "image": "..." },
+
+  { "id": 301, "hotelId": 3, "name": "Grand Deluxe King", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 410, "rating": 4.5, "available": true, "image": "..." },
+  { "id": 302, "hotelId": 3, "name": "Executive Suite", "type": "Suite", "beds": "1 King", "maxGuests": 3, "pricePerNight": 620, "rating": 4.7, "available": false, "image": "..." },
+  { "id": 303, "hotelId": 3, "name": "Studio Twin Room", "type": "Studio", "beds": "2 Twin", "maxGuests": 2, "pricePerNight": 280, "rating": 4.2, "available": true, "image": "..." },
+
+  { "id": 401, "hotelId": 4, "name": "Cabin Suite with Fuji View", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 750, "rating": 4.9, "available": false, "image": "..." },
+  { "id": 402, "hotelId": 4, "name": "Forest Terrace Room", "type": "Loft", "beds": "1 Queen", "maxGuests": 2, "pricePerNight": 520, "rating": 4.7, "available": true, "image": "..." },
+  { "id": 403, "hotelId": 4, "name": "Minimal Single Cabin", "type": "Single", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 300, "rating": 4.0, "available": true, "image": "..." },
+
+  { "id": 501, "hotelId": 5, "name": "Private Onsen Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 900, "rating": 4.9, "available": false, "image": "..." },
+  { "id": 502, "hotelId": 5, "name": "Luxury Tatami Room", "type": "Ryokan", "beds": "Futon", "maxGuests": 3, "pricePerNight": 650, "rating": 4.8, "available": true, "image": "..." },
+  { "id": 503, "hotelId": 5, "name": "Simple Tatami Single", "type": "Economy", "beds": "Futon", "maxGuests": 1, "pricePerNight": 320, "rating": 4.1, "available": false, "image": "..." },
+
+  { "id": 601, "hotelId": 6, "name": "Corner King Room", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 280, "rating": 4.4, "available": true, "image": "..." },
+  { "id": 602, "hotelId": 6, "name": "Executive Suite", "type": "Suite", "beds": "1 King", "maxGuests": 3, "pricePerNight": 400, "rating": 4.5, "available": true, "image": "..." },
+  { "id": 603, "hotelId": 6, "name": "Compact Business Room", "type": "Single", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 180, "rating": 3.9, "available": false, "image": "..." },
+
+  { "id": 701, "hotelId": 7, "name": "Onsen View Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 550, "rating": 4.8, "available": true, "image": "..." },
+  { "id": 702, "hotelId": 7, "name": "Resort Deluxe King", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 420, "rating": 4.6, "available": false, "image": "..." },
+  { "id": 703, "hotelId": 7, "name": "Family Room", "type": "Family", "beds": "2 Queen", "maxGuests": 4, "pricePerNight": 480, "rating": 4.3, "available": true, "image": "..." },
+
+  { "id": 801, "hotelId": 8, "name": "Harbor View Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 320, "rating": 4.5, "available": true, "image": "..." },
+  { "id": 802, "hotelId": 8, "name": "Deluxe Twin Room", "type": "Deluxe", "beds": "2 Twin", "maxGuests": 2, "pricePerNight": 260, "rating": 4.3, "available": false, "image": "..." },
+  { "id": 803, "hotelId": 8, "name": "Budget Single Room", "type": "Economy", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 150, "rating": 3.8, "available": true, "image": "..." },
+
+  { "id": 901, "hotelId": 9, "name": "Ocean View Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 480, "rating": 4.7, "available": false, "image": "..." },
+  { "id": 902, "hotelId": 9, "name": "Beachfront Deluxe", "type": "Deluxe", "beds": "2 Queen", "maxGuests": 4, "pricePerNight": 350, "rating": 4.5, "available": true, "image": "..." },
+  { "id": 903, "hotelId": 9, "name": "Studio Ocean Single", "type": "Studio", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 220, "rating": 4.2, "available": true, "image": "..." },
+
+  { "id": 1001, "hotelId": 10, "name": "Traditional Suite", "type": "Ryokan", "beds": "Futon", "maxGuests": 3, "pricePerNight": 300, "rating": 4.4, "available": true, "image": "..." },
+  { "id": 1002, "hotelId": 10, "name": "Tatami Deluxe Room", "type": "Ryokan", "beds": "Futon", "maxGuests": 2, "pricePerNight": 240, "rating": 4.2, "available": false, "image": "..." },
+  { "id": 1003, "hotelId": 10, "name": "Basic Twin Room", "type": "Standard", "beds": "2 Twin", "maxGuests": 2, "pricePerNight": 190, "rating": 3.9, "available": true, "image": "..." },
+
+  { "id": 1101, "hotelId": 11, "name": "Sky High Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 450, "rating": 4.7, "available": true, "image": "..." },
+  { "id": 1102, "hotelId": 11, "name": "Panoramic Deluxe", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 320, "rating": 4.5, "available": false, "image": "..." },
+  { "id": 1103, "hotelId": 11, "name": "Compact Single Skyline", "type": "Single", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 200, "rating": 4.1, "available": true, "image": "..." },
+
+  { "id": 1201, "hotelId": 12, "name": "Prestige Suite", "type": "Suite", "beds": "1 King", "maxGuests": 2, "pricePerNight": 600, "rating": 4.8, "available": false, "image": "..." },
+  { "id": 1202, "hotelId": 12, "name": "Deluxe King Room", "type": "Deluxe", "beds": "1 King", "maxGuests": 2, "pricePerNight": 420, "rating": 4.6, "available": true, "image": "..." },
+  { "id": 1203, "hotelId": 12, "name": "Economy Single Tokyo", "type": "Economy", "beds": "1 Twin", "maxGuests": 1, "pricePerNight": 230, "rating": 4.0, "available": true, "image": "..." }
+]
