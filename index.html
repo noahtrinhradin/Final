@@ -15,8 +15,25 @@
             crossorigin=""></script>
 </head>
 <body>
-<div class="container-fluid h-100 p-0" id="map-container">
-    <div class="" id="map"></div>
+    <!--<div class="offcanvas offcanvas-start hide" tabindex="-1" id="offcanvas" data-bs-scroll="true" data-bs-backdrop="false" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
+        </div>
+    </div>-->
+<div class="container-fluid d-flex h-100 p-0 bg-dark text-white">
+    <div id="sidebar" class="d-flex flex-column p-3">
+        <div id="sidebarTitle">
+            <h1>Hotels Sinnoh</h1>
+        </div>
+        <div id="sidebarCards" class="d-flex flex-column overflow-y-auto"></div>
+    </div>
+    <div class="container-fluid h-100 p-0" id="map-container">
+        <div id="map"></div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="scripts/project.js"></script>
