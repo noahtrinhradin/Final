@@ -4,7 +4,7 @@ $(document).ready(function() {
     var map = L.map("map",{
         crs: L.CRS.Simple,
         maxZoom: 2,
-        minZoom: -0.5,//0.017,
+        minZoom: 0.1,//0.017,
         maxBounds: bounds,
         maxBoundsViscosity: 1.0
     });
@@ -58,7 +58,7 @@ $(document).ready(function() {
                     className: "Snowpoint"
                 });
             }   else if(hotel.id === 12){
-                 markers[hotel.id] = L.marker(hotel.coords).addTo(map).bindPopup(card, {
+                markers[hotel.id] = L.marker(hotel.coords).addTo(map).bindPopup(card, {
                     offset: [-220, 180],
                     className: "Sunyshore"
                 });
@@ -73,25 +73,28 @@ $(document).ready(function() {
         }
     }
 
+    let carousels = {};
+    let carouselInstances = {};
+    let hotelCards = {};
+
     const sidebarMake = () => {
-        let carousels = {};
-        let carouselInstances = {};
-        let hotelCards = {};
 
         for (let hotel of hotels) {
             hotelCards[hotel.id] = `
-                <div class="card mt-2 mb-2 p-0 sidebarCard bg-dark text-white">
-                    <img src="${hotel.image}" class="img-fluid card-img-top rounded-start sidebarImg" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${hotel.name}</h5>
-                        <p class="card-text">${hotel.description}</p>
-                        <p class="card-text small">${hotel.rating}⭑ (${hotel.reviews} reviews)</p>
-                        <img src="${hotel.weather}" class="weather" alt="...">
+                <div id="hotelCard${hotel.id}">
+                    <div class="card mt-2 mb-2 p-0 sidebarCard bg-dark text-white">
+                        <img src="${hotel.image}" class="img-fluid card-img-top rounded-start sidebarImg" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${hotel.name}</h5>
+                            <p class="card-text">${hotel.description}</p>
+                            <p class="card-text small">${hotel.rating}⭑ (${hotel.reviews} reviews)</p>
+                            <img src="${hotel.weather}" class="weather" alt="...">
+                        </div>
                     </div>
+                    <div id="carouselCard${hotel.id}"></div>
                 </div>
-                <div id="carouselCard${hotel.id}"></div>
             `;
-             $("#sidebarCards").append(hotelCards[hotel.id]);
+            $("#sidebarCards").append(hotelCards[hotel.id]);
         }
 
         for (let i = 0; i < hotels.length; i++) {
@@ -111,13 +114,18 @@ $(document).ready(function() {
                 } else {
                     img = "images/single.png";
                 }
-                 let card = `
+                let card = `
                 <div class="carousel-item ${active}">
-                    <div class="card mt-2 mb-2 pb-5 sidebarCard bg-dark text-white">
-                        <img src="${img}" class="img-fluid card-img-top rounded-start sidebarImg" alt="...">
+                    <div class="card mt-2 mb-2 pb-3 sidebarCard bg-dark text-white">
+                        <img src="${img}" class="img-fluid card-img-top rounded-start roomImg" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">${room.name}</h5>
                             <div class="row">
+                                <div class="col-12 d-flex align-items-center mt-1 mb-3">
+                                    <h5 class="card-title col-6">${room.name}</h5>
+                                    <div class="col-6 text-center">
+                                        <button type="button" class="btn btn-secondary col-6">Add to Cart</button>
+                                    </div>
+                                </div>
                                 <p class="card-text col-6">₽${room.pricePerNight} / night</p>
                                 <p class="card-text col-6">${room.rating}⭑ (${room.reviews} reviews)</p>
                                 <p class="card-text col-6">Beds: ${room.beds}</p>
@@ -129,8 +137,8 @@ $(document).ready(function() {
                     </div>
                 </div>
             `;
-            cards += card;
-            active = "";
+                cards += card;
+                active = "";
             }
 
             carousels[i] = `
@@ -156,15 +164,32 @@ $(document).ready(function() {
             $(`#carouselCard${hotels[i].id}`).append(carousels[i]);
             carouselInstances[i] = new bootstrap.Carousel(`#carousel${i}`);
         }
-        
-
     }
 
+    const cardVisibility = () => {
+        for (let hotel of hotels) {
+            markers[hotel.id].on("click", function () {
+                for(let hotel of hotels) {
+                    $(`#hotelCard${hotel.id}`).hide();
+                }
+                $(`#hotelCard${hotel.id}`).show();
+                $("#sidebarCards").scrollTop(0);
+            })
+        }
+
+        map.on("click", function () {
+            for (let hotel of hotels) {
+                $(`#hotelCard${hotel.id}`).show();
+                $("#sidebarCards").scrollTop(0);
+            }
+        })
+    }
 
     const loadPage = async() => {
         await loadJSON();
         markerMake();
         sidebarMake();
+        cardVisibility();
     }
     loadPage();
 
