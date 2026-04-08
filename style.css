@@ -85,15 +85,6 @@ body {
     border-radius: 30px;
 }
 
-#sidebarCards::-webkit-scrollbar {
-    width: 6px;
-}
-
-#sidebarCards::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-}
-
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
     position: absolute;

@@ -14,6 +14,7 @@ $(document).ready(function() {
     map.setZoom(0.5);
 
     //const offcanvas = new bootstrap.Offcanvas("#offcanvas");
+     const modal = new bootstrap.Modal("#calendarModal");
 
     let hotels;
     let rooms;
@@ -25,7 +26,6 @@ $(document).ready(function() {
 
             let res2 = await fetch("public/rooms.json");
             rooms = await res2.json();
-            console.log(hotels, rooms);
         } catch (e) {
             console.log("Failed loading JSON");
         }
@@ -44,7 +44,7 @@ $(document).ready(function() {
                             <div class="card-body">
                                 <h5 class="card-title">${hotel.name}</h5>
                                 <p class="card-text">${hotel.description}</p>
-                                <p class="card-text">${hotel.rating}⭑ <span class="text-body-secondary">(${hotel.reviews} reviews)</span</p>
+                                <p class="card-text">${hotel.rating}⭑ <span class="text-body-secondary">(${hotel.reviews} reviews)</span></p>
                                 <p class="card-text"><small class="text-body-secondary">${hotel.city}</small></p>
                                 <img src="${hotel.weather}" class="weather" alt="...">
                             </div>
@@ -102,6 +102,7 @@ $(document).ready(function() {
             let roomGroup = rooms.filter(room => room.hotelId === hotels[i].id);
             let active = "active";
             for (let room of roomGroup) {
+                $("#modalLabel").html(`Booking: ${room.name}`)
                 let availability = "is not";
                 if(room.available) {
                     availability = "is";
@@ -123,7 +124,7 @@ $(document).ready(function() {
                                 <div class="col-12 d-flex align-items-center mt-1 mb-3">
                                     <h5 class="card-title col-6">${room.name}</h5>
                                     <div class="col-6 text-center">
-                                        <button type="button" class="btn btn-secondary col-6">Add to Cart</button>
+                                        <button type="button" id="roombtn${room.id}" class="btn btn-secondary roombtns col-6" data-bs-toggle="modal" data-bs-target="#calendarModal">Add to Cart</button>
                                     </div>
                                 </div>
                                 <p class="card-text col-6">₽${room.pricePerNight} / night</p>
