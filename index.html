@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,44 +18,90 @@
 <body>
     <div class="modal fade" id="calendarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white">
+            <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body d-flex justify-content-center align-items-center">
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="input-group mb-3 p-2">
-                        <span class="input-group-text" id="basic-addon1">In</span>
-                        <input type="date" class="form-control form-control-sm bg-dark text-white" aria-describedby="basic-addon1">
+                        <span class="input-group-text">In</span>
+                        <input type="date" id="dateIn" class="form-control form-control" aria-describedby="dateIn">
                     </div>
                     <div class="input-group mb-3 p-2">
-                        <span class="input-group-text" id="basic-addon2">Out</span>
-                        <input type="date" class="form-control form-control-sm bg-dark text-white" aria-describedby="basic-addon2">
+                        <span class="input-group-text">Out</span>
+                        <input type="date" id="dateOut" class="form-control form-control" aria-describedby="dateOut">
                     </div>
                 </div>
+                <h5 id="validate" class="text-danger"></h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save and Continue Browsing</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Proceed to Checkout?</button>
+                <button type="button" id="modalbtnBack" class="btn btn-primary">Save and Continue Browsing</button>
+                <button type="button" id="modalbtnCheckout" class="btn btn-secondary">Proceed to Checkout?</button>
             </div>
             </div>
         </div>
     </div>
     
-    <div class="offcanvas offcanvas-end bg-dark text-white" tabindex="-1" id="checkoutOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="static">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="checkoutOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="static">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Checkout</h5>
+            <h3 class="offcanvas-title" id="offcanvasRightLabel">Checkout</h3>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-            <div class="checkoutForm">
+        <div class="offcanvas-body overflow-y-auto">
+            <div class="checkoutForm d-flex justify-content-center align-items-center">
+                <form id="login">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill fs-5"></i></span>
+                        <input type="text" id="fname" class="form-control me-1" placeholder="First Name..." aria-label="FName" aria-describedby="basic-addon1">
+                        <div id="invalid-fname" class="invalid-feedback"></div>
 
+                        <span class="input-group-text ms-1" id="basic-addon2"><i class="bi bi-person-fill fs-5"></i></span>
+                        <input type="text" id="lname" class="form-control" placeholder="Last Name..." aria-label="LName" aria-describedby="basic-addon2">
+                        <div id="invalid-lname" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope-at-fill fs-5"></i></span>
+                        <input type="email" id="email" class="form-control" placeholder="Email..." aria-label="Email" aria-describedby="basic-addon3">
+                        <div id="invalid-email" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon4"><i class="bi bi-telephone-fill fs-5"></i></span>
+                        <input type="text" id="phone" class="form-control" placeholder="Phone Number..." aria-label="Phone" aria-describedby="basic-addon4" maxLength="12">
+                        <div id="invalid-phone" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon5"><i class="bi bi-credit-card fs-5"></i></span>
+                            <input type="text" id="card" class="form-control me-1 w-50" placeholder="Credit Card..." aria-label="card" aria-describedby="basic-addon5" maxLength="19">
+                            <div id="invalid-card" class="invalid-feedback"></div>
+
+                            <span class="input-group-text ms-1" id="basic-addon6"><i class="bi bi-credit-card-2-back fs-5"></i></span>
+                            <input type="text" id="ccv" class=" form-control" placeholder="CCV" aria-label="ccv" aria-describedby="basic-addon6" maxLength="3">
+                            <div id="invalid-ccv" class="invalid-feedback"></div>
+                    </div>
+                </form>
+            </div>
+            <div id="prices" class="">
+                <div class="card">
+                    <div class="card-body">
+                        <ul id="checkoutList" class="list-group list-group-flush">
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <p id="subtotal" class="card-text"></p>
+                        <button type="button" id="payBtn" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#checkoutModal">Confirm Payment</button>
+                        <button type="button" id="emptyCartBtn" class="btn btn-danger">Empty Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-<div class="container-fluid d-flex h-100 p-0 bg-dark text-white">
+<div class="container-fluid d-flex h-100 p-0">
     <div id="sidebar" class="d-flex flex-column p-3">
         <div id="sidebarTitle" class="d-flex justify-content-between align-items-center">
             <h1>Hotels Sinnoh</h1>

@@ -13,8 +13,8 @@ $(document).ready(function() {
     map.fitBounds(bounds);
     map.setZoom(0.5);
 
-    //const offcanvas = new bootstrap.Offcanvas("#offcanvas");
-     const modal = new bootstrap.Modal("#calendarModal");
+    const offcanvas = new bootstrap.Offcanvas("#checkoutOffcanvas");
+    const modal = new bootstrap.Modal("#calendarModal");
 
     let hotels;
     let rooms;
@@ -82,7 +82,7 @@ $(document).ready(function() {
         for (let hotel of hotels) {
             hotelCards[hotel.id] = `
                 <div id="hotelCard${hotel.id}">
-                    <div class="card mt-2 mb-2 p-0 sidebarCard bg-dark text-white">
+                    <div class="card mt-2 mb-2 p-0 sidebarCard">
                         <img src="${hotel.image}" class="img-fluid card-img-top rounded-start sidebarImg" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${hotel.name}</h5>
@@ -102,7 +102,6 @@ $(document).ready(function() {
             let roomGroup = rooms.filter(room => room.hotelId === hotels[i].id);
             let active = "active";
             for (let room of roomGroup) {
-                $("#modalLabel").html(`Booking: ${room.name}`)
                 let availability = "is not";
                 if(room.available) {
                     availability = "is";
@@ -117,14 +116,14 @@ $(document).ready(function() {
                 }
                 let card = `
                 <div class="carousel-item ${active}">
-                    <div class="card mt-2 mb-2 pb-3 sidebarCard bg-dark text-white">
+                    <div class="card mt-2 mb-2 pb-3 sidebarCard">
                         <img src="${img}" class="img-fluid card-img-top rounded-start roomImg" alt="...">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 d-flex align-items-center mt-1 mb-3">
                                     <h5 class="card-title col-6">${room.name}</h5>
                                     <div class="col-6 text-center">
-                                        <button type="button" id="roombtn${room.id}" class="btn btn-secondary roombtns col-6" data-bs-toggle="modal" data-bs-target="#calendarModal">Add to Cart</button>
+                                        <button type="button" id="roombtn${room.id}" class="btn btn-secondary roombtns col-6">Add to Cart</button>
                                     </div>
                                 </div>
                                 <p class="card-text col-6">₽${room.pricePerNight} / night</p>
@@ -186,11 +185,135 @@ $(document).ready(function() {
         })
     }
 
-    const loadPage = async() => {
+    let bookedRooms = [];
+    let curRoom = {};
+    let finished;
+    let exists = false;
+
+    const btnLogic = () => {
+        for(let room of rooms){
+            $(`#roombtn${room.id}`).on("click", function() {
+                $("#validate").html("");
+                $("#modalLabel").html(`Booking: ${room.name}`);
+                curRoom = room;
+                let existingRoom = bookedRooms.find(room => room.room.id === curRoom.id);
+
+                if(existingRoom) {
+                    $("#dateIn").val(existingRoom.in);
+                    $("#dateOut").val(existingRoom.out);
+                    exists = true;
+                } else {
+                    $("#dateIn").val("");
+                    $("#dateOut").val("");
+                    exists = false;
+                }
+                modal.show();
+            });
+        }
+
+        const modalBtns = () => {
+            let roomBook = {
+                room: curRoom,
+                in: $("#dateIn").val(),
+                out: $("#dateOut").val()
+            }
+            finished = false;
+            if (roomBook.in === "" || roomBook.out === "") {
+                $("#validate").html("Please fill out both fields.");
+                return;
+            }
+            if (roomBook.in >= roomBook.out) {
+                $("#validate").html("Please enter valid dates.");
+                return;
+            } else {
+                $("#validate").html("");
+            }
+
+            if(exists) {
+                let updateRoom = bookedRooms.findIndex(room => room.room.id === curRoom.id);
+                bookedRooms[updateRoom] = roomBook;
+            } else {
+                bookedRooms.push(roomBook);
+                console.log(bookedRooms);
+            }
+            modal.hide();
+            finished = true;
+        }
+
+        $(`#modalbtnBack`).on("click", function() {
+            modalBtns();
+        });
+
+        $(`#modalbtnCheckout`).on("click", function() {
+            modalBtns();
+            if (finished) {
+                offcanvas.show();
+            }
+        });
+    }
+    const loadCart = () => {
+        const offcanvasLoad= () => {
+            let checkoutItems = "";
+            let subtotal = 0;
+
+            $("#checkoutList").empty();
+            for(let room of bookedRooms) {
+
+                let dateIn = new Date(room.in);
+                let dateOut = new Date(room.out);
+                let utc1 = Date.UTC(dateIn.getFullYear(), dateIn.getMonth(), dateIn.getDate());
+                let utc2 = Date.UTC(dateOut.getFullYear(), dateOut.getMonth(), dateOut.getDate());
+
+                const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+                let daysDiff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+                let price = daysDiff * room.room.pricePerNight;
+                subtotal += price;
+
+                let nights = "nights";
+                if (daysDiff === 1) {
+                    nights = "night";
+                }
+                checkoutItems += `<li id="li${room.room.id}" class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p>${room.room.name}:
+                            <br>- <span class="small">₽${room.room.pricePerNight} x ${daysDiff} ${nights}</span>
+                            <br>- Total: ₽${price}
+                            </span>
+                        </p>
+                        <i id="trashbtn${room.room.id}" class="bi bi-trash"></i>
+                    </div>
+                </li>`;
+            }
+
+            $("#subtotal").html(`Subtotal: ₽${subtotal}`);
+            $("#checkoutList").append(checkoutItems);
+
+            for (let room of bookedRooms) {
+                $(`#trashbtn${room.room.id}`).on("click", function () {
+                    let roomid = room.room.id;
+                    bookedRooms = bookedRooms.filter(bookedRoom => bookedRoom.room.id !== roomid);
+                    offcanvasLoad();
+                });
+            }
+        }
+
+        $("#emptyCartBtn").click(() => {
+           bookedRooms = [];
+           offcanvasLoad();
+        });
+
+        $("#checkoutOffcanvas").on("show.bs.offcanvas", function () {
+            offcanvasLoad();
+        });
+
+    }
+    const loadPage = async () => {
         await loadJSON();
         markerMake();
         sidebarMake();
         cardVisibility();
+        btnLogic();
+        loadCart();
     }
     loadPage();
 
