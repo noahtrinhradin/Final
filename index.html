@@ -1,4 +1,5 @@
 <!doctype html>
+<!--Bs Dark Mode-->
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
@@ -16,6 +17,7 @@
             crossorigin=""></script>
 </head>
 <body>
+    <!--Modal that opens when you book a room, gathers booking dates and party size-->
     <div class="modal fade" id="calendarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -35,6 +37,10 @@
                     </div>
                 </div>
                 <h5 id="validate" class="text-danger"></h5>
+                <div class="mb-3 w-25 text-center d-flex flex-column justify-content-center align-items-center">
+                    <label for="groupSizeInput" class="form-label">Group Size</label>
+                    <input type="number" class="form-control" id="groupSizeInput" value="1" min="1">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" id="modalbtnBack" class="btn btn-primary">Save and Continue Browsing</button>
@@ -43,7 +49,35 @@
             </div>
         </div>
     </div>
-    
+<!--Modal that shows once you pay, shows your receipt-->
+    <div class="modal fade" id="checkoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalLabel2">Successful Payment!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="checkoutModalBody" class="modal-body d-flex flex-column justify-content-center align-items-center">
+                <p id="modalMsg"><p>
+                <div class="card">
+                    <div class="card-body">
+                        <ul id="checkoutListModal" class="list-group list-group-flush">
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <p id="subtotalModal" class="card-text"></p>
+                        <p id="taxModal" class="card-text small"></p>
+                        <h5 id="grandTotalModal" class="card-text"></h5>
+                    </div>
+                </div>
+                <button type="button" id="checkoutModalBtn" class="btn btn-secondary mt-3">Done</button>
+            </div>
+            <div class="modal-footer">
+            </div>
+            </div>
+        </div>
+    </div>
+    <!--Checkout Cart offcanvas-->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="checkoutOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="static">
         <div class="offcanvas-header">
             <h3 class="offcanvas-title" id="offcanvasRightLabel">Checkout</h3>
@@ -52,40 +86,54 @@
         <div class="offcanvas-body overflow-y-auto">
             <div class="checkoutForm d-flex justify-content-center align-items-center">
                 <form id="login">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill fs-5"></i></span>
-                        <input type="text" id="fname" class="form-control me-1" placeholder="First Name..." aria-label="FName" aria-describedby="basic-addon1">
-                        <div id="invalid-fname" class="invalid-feedback"></div>
-
-                        <span class="input-group-text ms-1" id="basic-addon2"><i class="bi bi-person-fill fs-5"></i></span>
-                        <input type="text" id="lname" class="form-control" placeholder="Last Name..." aria-label="LName" aria-describedby="basic-addon2">
-                        <div id="invalid-lname" class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope-at-fill fs-5"></i></span>
-                        <input type="email" id="email" class="form-control" placeholder="Email..." aria-label="Email" aria-describedby="basic-addon3">
-                        <div id="invalid-email" class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon4"><i class="bi bi-telephone-fill fs-5"></i></span>
-                        <input type="text" id="phone" class="form-control" placeholder="Phone Number..." aria-label="Phone" aria-describedby="basic-addon4" maxLength="12">
-                        <div id="invalid-phone" class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon5"><i class="bi bi-credit-card fs-5"></i></span>
-                            <input type="text" id="card" class="form-control me-1 w-50" placeholder="Credit Card..." aria-label="card" aria-describedby="basic-addon5" maxLength="19">
-                            <div id="invalid-card" class="invalid-feedback"></div>
-
-                            <span class="input-group-text ms-1" id="basic-addon6"><i class="bi bi-credit-card-2-back fs-5"></i></span>
-                            <input type="text" id="ccv" class=" form-control" placeholder="CCV" aria-label="ccv" aria-describedby="basic-addon6" maxLength="3">
-                            <div id="invalid-ccv" class="invalid-feedback"></div>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" id="fname" class="form-control" placeholder="First Name...">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" id="lname" class="form-control" placeholder="Last Name...">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope-at-fill"></i></span>
+                                <input type="email" id="email" class="form-control" placeholder="Email...">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                                <input type="text" id="phone" class="form-control" placeholder="Phone Number..." maxlength="12">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
+                                <input type="text" id="card" class="form-control" placeholder="Credit Card..." maxlength="19">
+                            </div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                <input type="text" id="expiry" class="form-control" placeholder="MM / YY" maxlength="7">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-credit-card-2-back"></i></span>
+                                <input type="text" id="ccv" class="form-control" placeholder="CCV" maxlength="3">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
-            <div id="prices" class="">
+            <div id="prices" class="mt-2">
                 <div class="card">
                     <div class="card-body">
                         <ul id="checkoutList" class="list-group list-group-flush">
@@ -93,22 +141,41 @@
                     </div>
                     <div class="card-footer">
                         <p id="subtotal" class="card-text"></p>
-                        <button type="button" id="payBtn" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#checkoutModal">Confirm Payment</button>
+                        <p id="tax" class="card-text"></p>
+                        <h5 id="grandTotal" class="card-text"></h5>
+                        <button type="button" id="payBtn" class="btn btn-secondary">Confirm Payment</button>
                         <button type="button" id="emptyCartBtn" class="btn btn-danger">Empty Cart</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<!--Main content, divided between map and sidebar that shows the rooms and hotels-->
 <div class="container-fluid d-flex h-100 p-0">
     <div id="sidebar" class="d-flex flex-column p-3">
         <div id="sidebarTitle" class="d-flex justify-content-between align-items-center">
             <h1>Hotels Sinnoh</h1>
+            <img src="images/masterball.png" alt="masterball" id="logo">
         </div>
         <div id="icons" class="d-flex justify-content-around align-items-center mb-2">
             <i class="bi bi-cart3 fs-2" data-bs-toggle="offcanvas" data-bs-target="#checkoutOffcanvas" aria-controls="checkoutOffcanvas"></i>
-            <i class="bi bi-filter fs-2"></i>
+            <div class="dropdown-center">
+                <i class="bi bi-filter fs-2" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#" id="sortPriceA">Price <i class="bi bi-arrow-up"></i></a>
+                        <a class="dropdown-item hide" href="#" id="sortPriceD">Price <i class="bi bi-arrow-down"></i></a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" id="sortRatingA">Rating <i class="bi bi-arrow-up"></i></a>
+                        <a class="dropdown-item hide" href="#" id="sortRatingD">Rating <i class="bi bi-arrow-down"></i></a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" id="sortGuestsA">Max Guests <i class="bi bi-arrow-up"></i></a>
+                        <a class="dropdown-item hide" href="#" id="sortGuestsD">Max Guests <i class="bi bi-arrow-down"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div id="sidebarCards" class="d-flex flex-column overflow-y-auto pe-2"></div>
     </div>

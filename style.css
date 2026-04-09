@@ -13,7 +13,7 @@ body {
     height: 100%;
     width: 100%;
 }
-
+/*Makes card and popup sizes the same*/
 .leaflet-popup-content-wrapper {
   padding: 0 !important;
 }
@@ -22,7 +22,7 @@ body {
   margin: 0 !important;
   padding: 0 !important;
 }
-
+/*Top marker, makes arrow start on top and spins it (the popup has offset to start below marker)*/
 .Snowpoint .leaflet-popup-content-wrapper {
   position: relative !important;
 }
@@ -33,11 +33,11 @@ body {
   left: 50% !important;
   transform: rotate(180deg) !important;
 }
-
+/*disabled arrow, didnt look great on the side of the popup*/
 .Sunyshore .leaflet-popup-tip-container {
   display: none;
 }
-
+/*set card width made close button not follow*/
 .leaflet-popup-close-button {
   top: 0px !important;
   right: -45px !important;
@@ -59,7 +59,13 @@ body {
 .weather {
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom: 1px;
+}
+
+.weatherP {
+    position: absolute;
+    right: 23%;
+    bottom: 0;
 }
 
 #sidebar {
@@ -84,9 +90,46 @@ body {
     object-fit: contain;
     border-radius: 30px;
 }
-
+/*carousel arrows, made them center of img rather than card*/
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
     position: absolute;
     top: 25%;
 }
+/*For toggling between ascending and descending sort*/
+.hide {
+    display: none;
+}
+/*Make img zoom in on hover, this crops it*/
+.sidebarCard, .roomImg {
+    overflow: hidden; 
+}
+.sidebarImg, .roomImg {
+    transition: transform 1.5s ease, filter 1.5s ease;
+}
+
+.sidebarImg:hover, 
+.roomImg:hover {
+    transform: scale(1.05);
+    filter: brightness(75%);
+}
+
+i, button {
+    transition: transform 1.5s ease;
+}
+
+i:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 2px #1FC0FF;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#logo {
+    width: 60px;
+}
+
+
+

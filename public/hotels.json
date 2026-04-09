@@ -8,7 +8,8 @@
     "reviews": 623,
     "description": "A cozy lakeside retreat surrounded by nature and fresh air. Close to the water's edge and ideal for those seeking peace and quiet.",
     "image": "images/TwinleafTown.jpg",
-    "weather": "images/castform.gif"
+    "irlCity": "Noboribetsu",
+    "rain": false
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "reviews": 714,
     "description": "A quiet guesthouse steps from Professor Rowan's lab. Popular with researchers and academics visiting from across Sinnoh.",
     "image": "images/SandgemTown.jpg",
-    "weather": "images/castform.gif"
+    "irlCity": "Tomakomai",
+    "rain": false
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "reviews": 2876,
     "description": "A sophisticated city escape in the centre of Sinnoh's most prosperous metropolis. World-class dining, a rooftop terrace, and easy access to the city's finest shopping.",
     "image": "images/JubilifeCity.jpg",
-    "weather": "images/castform.gif"
+    "irlCity": "Sapporo",
+    "rain": false
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "reviews": 1543,
     "description": "A rugged boutique hotel carved into the mountainside. Features fossil exhibits and guided mine tours daily.",
     "image": "images/OreburghCity.jpg",
-    "weather": "images/castform-sunny.gif"
+    "irlCity": "Muroran",
+    "rain": false
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "reviews": 1821,
     "description": "A secluded woodland retreat beside the ancient forest. Haunter sightings at dusk are a guest favourite.",
     "image": "images/EternaCity.jpg",
-    "weather": "images/castform-sunny.gif"
+    "irlCity": "Asahikawa",
+    "rain": false
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "reviews": 687,
     "description": "A historic inn nestled in Sinnoh's oldest town. Rooms overlook ancient ruins with cave paintings of primal legends.",
     "image": "images/CelesticTown.jpg",
-    "weather": "images/castform-rainy.gif"
+    "irlCity": "Kamikawa",
+    "rain": false
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "reviews": 2743,
     "description": "Glamorous luxury hotel attached to the Contest Hall. A favourite among coordinators and celebrities visiting from across Sinnoh.",
     "image": "images/HearthomeCity.jpg",
-    "weather": "images/castform-sunny.gif"
+    "irlCity": "Obihiro",
+    "rain": false
   },
   {
     "id": 8,
@@ -85,7 +92,8 @@
     "reviews": 641,
     "description": "A peaceful countryside stay near the Pokémon Day Care. Guests often wake to Unown sightings in the nearby ruins.",
     "image": "images/SolaceonTown.jpg",
-    "weather": "images/castform.gif"
+    "irlCity": "Ashoro",
+    "rain": false
   },
   {
     "id": 9,
@@ -96,7 +104,8 @@
     "reviews": 1654,
     "description": "A waterfront resort beside the Great Marsh. Offers guided safari tours and Croagunk spotting at sunrise.",
     "image": "images/PastoriaCity.jpg",
-    "weather": "images/castform-rainy.gif"
+    "irlCity": "Kushiro",
+    "rain": false
   },
   {
     "id": 10,
@@ -107,7 +116,8 @@
     "reviews": 2512,
     "description": "A sleek urban hotel above the famous Game Corner. Close to the department store and ideal for those who enjoy city life.",
     "image": "images/VeilstoneCity.jpg",
-    "weather": "images/castform-rainy.gif"
+    "irlCity": "Abashiri",
+    "rain": false
   },
   {
     "id": 11,
@@ -118,7 +128,8 @@
     "reviews": 1287,
     "description": "A remote snowbound lodge near the legendary Snowpoint Temple. Heated rooms and hot springs make the arctic cold worthwhile.",
     "image": "images/SnowpointCity.jpg",
-    "weather": "images/castform-snowy.gif"
+    "irlCity": "Wakkanai",
+    "rain": false
   },
   {
     "id": 12,
@@ -129,6 +140,7 @@
     "reviews": 2134,
     "description": "A sun-drenched coastal luxury hotel powered by solar panels. Stunning views of the ocean and Volkner's iconic lighthouse.",
     "image": "images/SunyshoreCity.jpg",
-    "weather": "images/castform-sunny.gif"
+    "irlCity": "Nemuro",
+    "rain": false
   }
 ]
