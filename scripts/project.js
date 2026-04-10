@@ -18,7 +18,7 @@ $(document).ready(function() {
     let pokeballIcon = L.icon({
         iconUrl: "images/pokeball.png",
         iconSize: [30, 30],
-        conAnchor: [15, 15],
+        iconAnchor: [15, 15],
         popupAnchor: [0, -20]
     })
     const offcanvas = new bootstrap.Offcanvas("#checkoutOffcanvas");
@@ -452,10 +452,10 @@ $(document).ready(function() {
                     rainTax = 0.05 * room.price;
                 }
                 let roomDeal = "";
-                let discout = 0;
+                let discount = 0;
                 if(room.daysDiff >= 3) {
                     roomDeal = `<br>- <span class="small">10% extended trip discount`;
-                    discout = 0.1 * room.price;
+                    discount = 0.1 * room.price;
                 }
                 subtotal += room.price + rainTax + discount;
                 checkoutItems += `<li id="li${room.room.id}" class="list-group-item">
@@ -463,7 +463,7 @@ $(document).ready(function() {
                         <p>${room.room.name}:
                             <br>- <span class="small">₽${room.room.pricePerNight} x ${room.daysDiff} ${nights} x ${room.groupSize} ${guests}</span>
                             ${rainy}${roomDeal}
-                            <br>- Total: ₽${Math.round(room.price + rainTax + discout)}
+                            <br>- Total: ₽${Math.round(room.price + rainTax - discount)}
                         </p>
                         <i id="trashbtn${room.room.id}" class="bi bi-trash"></i>
                     </div>
@@ -611,18 +611,18 @@ $(document).ready(function() {
                 rainTax = 0.05 * room.price;
             }
             let roomDeal = "";
-            let discout = 0;
+            let discount = 0;
             if(room.daysDiff >= 3) {
                 roomDeal = `<br>- <span class="small">10% extended trip discount`;
-                discout = 0.1 * room.price;
+                discount = 0.1 * room.price;
             }
-            subtotal += room.price + rainTax + discout;
+            subtotal += room.price + rainTax + discount;
             checkoutItems += `<li id="li${room.room.id}" class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
                         <p>${room.room.name}:
                             <br>- <span class="small">₽${room.room.pricePerNight} x ${room.daysDiff} ${nights} x ${room.groupSize} ${guests}</span>
                             ${rainy}${roomDeal}
-                            <br>- Total: ₽${Math.round(room.price + discount + rainTax)}
+                            <br>- Total: ₽${Math.round(room.price - discount + rainTax)}
                             </span>
                         </p>
                     </div>
